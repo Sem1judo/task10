@@ -1,9 +1,10 @@
-package com.ua.foxminded.task10;
+package com.ua.foxminded.task10.model;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class TimeSlot {
+    private long TimeSlotId;
     private LocalDateTime startLesson;
     private LocalDateTime endLesson;
     private Group group;
@@ -12,11 +13,25 @@ public class TimeSlot {
     public TimeSlot() {
     }
 
-    public TimeSlot(LocalDateTime startLesson, LocalDateTime endLesson, Group group, Lector lector) {
+    public TimeSlot(LocalDateTime startLesson, LocalDateTime endLesson) {
+        this.startLesson = startLesson;
+        this.endLesson = endLesson;
+    }
+
+    public TimeSlot(long timeSlotId, LocalDateTime startLesson, LocalDateTime endLesson, Group group, Lector lector) {
+        TimeSlotId = timeSlotId;
         this.startLesson = startLesson;
         this.endLesson = endLesson;
         this.group = group;
         this.lector = lector;
+    }
+
+    public long getTimeSlotId() {
+        return TimeSlotId;
+    }
+
+    public void setTimeSlotId(long timeSlotId) {
+        TimeSlotId = timeSlotId;
     }
 
     public LocalDateTime getStartLesson() {
@@ -56,7 +71,8 @@ public class TimeSlot {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TimeSlot timeSlot = (TimeSlot) o;
-        return Objects.equals(startLesson, timeSlot.startLesson) &&
+        return TimeSlotId == timeSlot.TimeSlotId &&
+                Objects.equals(startLesson, timeSlot.startLesson) &&
                 Objects.equals(endLesson, timeSlot.endLesson) &&
                 Objects.equals(group, timeSlot.group) &&
                 Objects.equals(lector, timeSlot.lector);
@@ -64,13 +80,14 @@ public class TimeSlot {
 
     @Override
     public int hashCode() {
-        return Objects.hash(startLesson, endLesson, group, lector);
+        return Objects.hash(TimeSlotId, startLesson, endLesson, group, lector);
     }
 
     @Override
     public String toString() {
         return "TimeSlot{" +
-                "startLesson=" + startLesson +
+                "TimeSlotId=" + TimeSlotId +
+                ", startLesson=" + startLesson +
                 ", endLesson=" + endLesson +
                 ", group=" + group +
                 ", lector=" + lector +

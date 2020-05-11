@@ -1,8 +1,9 @@
-package com.ua.foxminded.task10;
+package com.ua.foxminded.task10.model;
 
 import java.util.Objects;
 
 public class Lesson {
+    private long lessonId;
     private String name;
     private Lector lector;
 
@@ -12,6 +13,20 @@ public class Lesson {
     public Lesson(String name, Lector lector) {
         this.name = name;
         this.lector = lector;
+    }
+
+    public Lesson(long lessonId, String name, Lector lector) {
+        this.lessonId = lessonId;
+        this.name = name;
+        this.lector = lector;
+    }
+
+    public long getLessonId() {
+        return lessonId;
+    }
+
+    public void setLessonId(long lessonId) {
+        this.lessonId = lessonId;
     }
 
     public String getName() {
@@ -35,19 +50,21 @@ public class Lesson {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Lesson lesson = (Lesson) o;
-        return Objects.equals(name, lesson.name) &&
+        return lessonId == lesson.lessonId &&
+                Objects.equals(name, lesson.name) &&
                 Objects.equals(lector, lesson.lector);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, lector);
+        return Objects.hash(lessonId, name, lector);
     }
 
     @Override
     public String toString() {
         return "Lesson{" +
-                "name='" + name + '\'' +
+                "lesson_id=" + lessonId +
+                ", name='" + name + '\'' +
                 ", lector=" + lector +
                 '}';
     }

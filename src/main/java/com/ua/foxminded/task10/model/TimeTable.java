@@ -1,4 +1,4 @@
-package com.ua.foxminded.task10;
+package com.ua.foxminded.task10.model;
 
 import java.util.List;
 import java.util.Objects;

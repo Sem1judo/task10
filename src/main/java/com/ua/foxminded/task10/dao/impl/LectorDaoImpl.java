@@ -1,19 +1,20 @@
-package com.ua.foxminded.task10.spring.dao.impl;
+package com.ua.foxminded.task10.dao.impl;
 
 import com.ua.foxminded.task10.model.Lector;
-import com.ua.foxminded.task10.spring.dao.DaoInterface;
+import com.ua.foxminded.task10.dao.DaoInterface;
 import com.ua.foxminded.task10.model.mapper.LectorMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
+
 import java.util.List;
 
-@Component
+@Repository
 public class LectorDaoImpl implements DaoInterface<Lector> {
 
+    @Autowired
     JdbcTemplate jdbcTemplate;
 
     private final String SQL_FIND_LECTORS = "select * from lectors where lector_id = ?";
@@ -21,12 +22,6 @@ public class LectorDaoImpl implements DaoInterface<Lector> {
     private final String SQL_UPDATE_LECTORS = "update lectors set first_name = ?, last_name = ? where lector_id = ?";
     private final String SQL_GET_ALL_LECTORS = "select * from lectors";
     private final String SQL_INSERT_LECTORS = "insert into lectors(first_name, last_name) values(?,?)";
-
-
-    @Autowired
-    public LectorDaoImpl(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     @Override
     public Lector getById(Long id) {

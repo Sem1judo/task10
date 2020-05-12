@@ -1,6 +1,5 @@
-package com.ua.foxminded.task10.spring.dao;
+package com.ua.foxminded.task10.dao;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 public interface DaoInterface<T> {

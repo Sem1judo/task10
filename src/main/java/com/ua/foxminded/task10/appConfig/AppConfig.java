@@ -1,4 +1,4 @@
-package com.ua.foxminded.task10.spring.appConfig;
+package com.ua.foxminded.task10.appConfig;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

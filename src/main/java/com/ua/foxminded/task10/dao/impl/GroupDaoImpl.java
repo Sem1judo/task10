@@ -1,17 +1,19 @@
-package com.ua.foxminded.task10.spring.dao.impl;
+package com.ua.foxminded.task10.dao.impl;
 
 
 import com.ua.foxminded.task10.model.Group;
 import com.ua.foxminded.task10.model.mapper.GroupMapper;
-import com.ua.foxminded.task10.spring.dao.DaoInterface;
+import com.ua.foxminded.task10.dao.DaoInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.util.List;
 
-@Component
+@Repository
 public class GroupDaoImpl implements DaoInterface<Group> {
+
+    @Autowired
     JdbcTemplate jdbcTemplate;
 
     private final String SQL_FIND_GROUPS = "select * from groups where group_id = ?";
@@ -19,10 +21,6 @@ public class GroupDaoImpl implements DaoInterface<Group> {
     private final String SQL_UPDATE_GROUPS = "update groups set group_name where group_id = ?";
     private final String SQL_GET_ALL_GROUPS = "select * from groups";
     private final String SQL_INSERT_GROUPS = "insert into groups(group_name) values(?)";
-
-    public GroupDaoImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     @Override
     public Group getById(Long id) {

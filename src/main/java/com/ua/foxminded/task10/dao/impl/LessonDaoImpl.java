@@ -1,15 +1,17 @@
-package com.ua.foxminded.task10.spring.dao.impl;
+package com.ua.foxminded.task10.dao.impl;
 
-import com.ua.foxminded.task10.model.Lector;
 import com.ua.foxminded.task10.model.Lesson;
 import com.ua.foxminded.task10.model.mapper.LessonMapper;
-import com.ua.foxminded.task10.spring.dao.DaoInterface;
+import com.ua.foxminded.task10.dao.DaoInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import javax.sql.DataSource;
+import org.springframework.stereotype.Repository;
 import java.util.List;
 
+@Repository
 public class LessonDaoImpl implements DaoInterface<Lesson> {
+
+    @Autowired
     JdbcTemplate jdbcTemplate;
 
     private final String SQL_FIND_LESSON = "select * from lessons where lesson_id = ?";
@@ -17,10 +19,6 @@ public class LessonDaoImpl implements DaoInterface<Lesson> {
     private final String SQL_UPDATE_LESSON = "update lessons set lesson_name = ? where lesson_id = ?";
     private final String SQL_GET_ALL_LESSON = "select * from lessons";
     private final String SQL_INSERT_LESSON = "insert into lessons(lesson_name) values(?)";
-
-    public LessonDaoImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     @Override
     public Lesson getById(Long id) {

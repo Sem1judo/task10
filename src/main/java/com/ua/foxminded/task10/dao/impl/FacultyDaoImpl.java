@@ -1,18 +1,18 @@
-package com.ua.foxminded.task10.spring.dao.impl;
+package com.ua.foxminded.task10.dao.impl;
 
 import com.ua.foxminded.task10.model.Faculty;
 import com.ua.foxminded.task10.model.mapper.FacultyMapper;
-import com.ua.foxminded.task10.spring.dao.DaoInterface;
+import com.ua.foxminded.task10.dao.DaoInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.util.List;
 
-@Component
+@Repository
 public class FacultyDaoImpl implements DaoInterface<Faculty> {
 
+    @Autowired
     JdbcTemplate jdbcTemplate;
 
     private final String SQL_FIND_FACULTY = "select * from faculties where faculty_id = ?";
@@ -20,12 +20,6 @@ public class FacultyDaoImpl implements DaoInterface<Faculty> {
     private final String SQL_UPDATE_FACULTY = "update faculties set faculty_name = ? where faculty_id = ?";
     private final String SQL_GET_ALL_FACULTY = "select * from faculties";
     private final String SQL_INSERT_FACULTY = "insert into faculties(faculty_name) values(?)";
-
-
-    @Autowired
-    public FacultyDaoImpl(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     @Override
     public Faculty getById(Long id) {

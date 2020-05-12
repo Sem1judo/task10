@@ -1,0 +1,16 @@
+
+y	java:S116"]Rename this field "SQL_DELETE_LECTORS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(в­і•8жШщпџ.
+>
+java:S1170"!Make this final field static too.(в­і•8жШщпџ.
+y	java:S116"]Rename this field "SQL_UPDATE_LECTORS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Х—йЁ8жШщпџ.
+C
+java:S1170"!Make this final field static too.( Иь«ьяяяя8жШщпџ.
+|	java:S116"[Rename this field "SQL_FIND_LECTORS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(нЌЂ©шяяяя8жШщпџ.
+>
+java:S1170"!Make this final field static too.(Х—йЁ8жШщпџ.
+C
+java:S1170"!Make this final field static too.(нЌЂ©шяяяя8жШщпџ.
+y	java:S116"]Rename this field "SQL_INSERT_LECTORS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ц¤†±8жШщпџ.
+>
+java:S1170"!Make this final field static too.(Ц¤†±8жШщпџ.
+	java:S116"^Rename this field "SQL_GET_ALL_LECTORS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( Иь«ьяяяя8жШщпџ.

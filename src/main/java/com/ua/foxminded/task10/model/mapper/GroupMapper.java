@@ -18,3 +18,4 @@ public class GroupMapper implements RowMapper<Group> {
         return group;
     }
 }
+

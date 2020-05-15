@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 
 @Configuration
-@ComponentScan("com.ua.foxminded.task10.spring")
+@ComponentScan("com.ua.foxminded.task10")
 @PropertySource("classpath:database.properties")
 public class AppConfig {
 

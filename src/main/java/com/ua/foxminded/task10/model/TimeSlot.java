@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class TimeSlot {
-    private long TimeSlotId;
+    private long timeSlotId;
     private LocalDateTime startLesson;
     private LocalDateTime endLesson;
     private Group group;
@@ -19,7 +19,7 @@ public class TimeSlot {
     }
 
     public TimeSlot(long timeSlotId, LocalDateTime startLesson, LocalDateTime endLesson, Group group, Lector lector) {
-        TimeSlotId = timeSlotId;
+        this.timeSlotId = timeSlotId;
         this.startLesson = startLesson;
         this.endLesson = endLesson;
         this.group = group;
@@ -27,11 +27,11 @@ public class TimeSlot {
     }
 
     public long getTimeSlotId() {
-        return TimeSlotId;
+        return timeSlotId;
     }
 
     public void setTimeSlotId(long timeSlotId) {
-        TimeSlotId = timeSlotId;
+        this.timeSlotId = timeSlotId;
     }
 
     public LocalDateTime getStartLesson() {
@@ -71,7 +71,7 @@ public class TimeSlot {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TimeSlot timeSlot = (TimeSlot) o;
-        return TimeSlotId == timeSlot.TimeSlotId &&
+        return timeSlotId == timeSlot.timeSlotId &&
                 Objects.equals(startLesson, timeSlot.startLesson) &&
                 Objects.equals(endLesson, timeSlot.endLesson) &&
                 Objects.equals(group, timeSlot.group) &&
@@ -80,13 +80,13 @@ public class TimeSlot {
 
     @Override
     public int hashCode() {
-        return Objects.hash(TimeSlotId, startLesson, endLesson, group, lector);
+        return Objects.hash(timeSlotId, startLesson, endLesson, group, lector);
     }
 
     @Override
     public String toString() {
         return "TimeSlot{" +
-                "TimeSlotId=" + TimeSlotId +
+                "TimeSlotId=" + timeSlotId +
                 ", startLesson=" + startLesson +
                 ", endLesson=" + endLesson +
                 ", group=" + group +

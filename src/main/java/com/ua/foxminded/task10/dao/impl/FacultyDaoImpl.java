@@ -2,7 +2,7 @@ package com.ua.foxminded.task10.dao.impl;
 
 import com.ua.foxminded.task10.model.Faculty;
 import com.ua.foxminded.task10.model.mapper.FacultyMapper;
-import com.ua.foxminded.task10.dao.DaoInterface;
+import com.ua.foxminded.task10.dao.DaoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class FacultyDaoImpl implements DaoInterface<Faculty> {
+public class FacultyDaoImpl implements DaoEntity<Faculty> {
 
     @Autowired
     JdbcTemplate jdbcTemplate;

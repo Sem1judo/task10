@@ -3,7 +3,7 @@ package com.ua.foxminded.task10.dao.impl;
 
 import com.ua.foxminded.task10.model.Group;
 import com.ua.foxminded.task10.model.mapper.GroupMapper;
-import com.ua.foxminded.task10.dao.DaoInterface;
+import com.ua.foxminded.task10.dao.DaoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class GroupDaoImpl implements DaoInterface<Group> {
+public class GroupDaoImpl implements DaoEntity<Group> {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -21,6 +21,11 @@ public class GroupDaoImpl implements DaoInterface<Group> {
     private final String SQL_UPDATE_GROUPS = "update groups set group_name where group_id = ?";
     private final String SQL_GET_ALL_GROUPS = "select * from groups";
     private final String SQL_INSERT_GROUPS = "insert into groups(group_name) values(?)";
+    private final String SQL_GET_LESSONS_GROUPS = "select lessons.lesson_name, count(time_slots.lesson_id)*2 as quantity from time_slots\n" +
+            "join lessons on lessons.lesson_id = time_slots.lesson_id\n" +
+            "join groups on groups.group_id = time_slots.group_id\n" +
+            "where groups.group_id = ?\n" +
+            "group by lessons.lesson_name";
 
     @Override
     public Group getById(Long id) {
@@ -47,4 +52,12 @@ public class GroupDaoImpl implements DaoInterface<Group> {
     public boolean create(Group group) {
         return jdbcTemplate.update(SQL_INSERT_GROUPS, group.getName()) > 0;
     }
+
+    public int getLessonsById(Long id) {
+        return jdbcTemplate.queryForObject(SQL_GET_LESSONS_GROUPS, new Object[]{id}, Integer.class);
+    }
 }
+
+
+
+

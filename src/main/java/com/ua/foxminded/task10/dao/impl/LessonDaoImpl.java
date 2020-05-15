@@ -2,14 +2,14 @@ package com.ua.foxminded.task10.dao.impl;
 
 import com.ua.foxminded.task10.model.Lesson;
 import com.ua.foxminded.task10.model.mapper.LessonMapper;
-import com.ua.foxminded.task10.dao.DaoInterface;
+import com.ua.foxminded.task10.dao.DaoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class LessonDaoImpl implements DaoInterface<Lesson> {
+public class LessonDaoImpl implements DaoEntity<Lesson> {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -45,4 +45,5 @@ public class LessonDaoImpl implements DaoInterface<Lesson> {
     public boolean create(Lesson lesson) {
         return jdbcTemplate.update(SQL_INSERT_LESSON, lesson.getName()) > 0;
     }
+
 }

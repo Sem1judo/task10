@@ -4,6 +4,7 @@ import com.ua.foxminded.task10.model.Faculty;
 import com.ua.foxminded.task10.model.mapper.FacultyMapper;
 import com.ua.foxminded.task10.dao.DaoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,13 +14,14 @@ import java.util.List;
 public class FacultyDaoImpl implements DaoEntity<Faculty> {
 
     @Autowired
+    @Qualifier("jdbcTemplate")
     JdbcTemplate jdbcTemplate;
 
-    private final String SQL_FIND_FACULTY = "select * from faculties where faculty_id = ?";
-    private final String SQL_DELETE_FACULTY = "delete from faculties where faculty_id = ?";
-    private final String SQL_UPDATE_FACULTY = "update faculties set faculty_name = ? where faculty_id = ?";
-    private final String SQL_GET_ALL_FACULTY = "select * from faculties";
-    private final String SQL_INSERT_FACULTY = "insert into faculties(faculty_name) values(?)";
+    private static final String SQL_FIND_FACULTY = "select * from faculties where faculty_id = ?";
+    private static final String SQL_DELETE_FACULTY = "delete from faculties where faculty_id = ?";
+    private static final String SQL_UPDATE_FACULTY = "update faculties set faculty_name = ? where faculty_id = ?";
+    private static final String SQL_GET_ALL_FACULTY = "select * from faculties";
+    private static final String SQL_INSERT_FACULTY = "insert into faculties(faculty_name) values(?)";
 
     @Override
     public Faculty getById(Long id) {

@@ -4,6 +4,7 @@ import com.ua.foxminded.task10.dao.DaoEntity;
 import com.ua.foxminded.task10.model.TimeSlot;
 import com.ua.foxminded.task10.model.mapper.TimeSLotMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,13 +14,14 @@ import java.util.List;
 public class TimeSlotDaoImpl implements DaoEntity<TimeSlot> {
 
     @Autowired
+    @Qualifier("jdbcTemplate")
     JdbcTemplate jdbcTemplate;
 
-    private final String SQL_FIND_TIMESLOT = "select * from time_slots where timeslot_id = ?";
-    private final String SQL_DELETE_TIMESLOT = "delete from time_slots where timeslot_id = ?";
-    private final String SQL_UPDATE_TIMESLOT = "update time_slots set start_lesson = ?, end_lesson = ? where timeslot_id = ?";
-    private final String SQL_GET_ALL_TIMESLOT = "select * from lessons";
-    private final String SQL_INSERT_TIMESLOT = "insert into time_slots(start_lesson, end_lesson) values(?,?)";
+    private static final String SQL_FIND_TIMESLOT = "select * from time_slots where timeslot_id = ?";
+    private static final String SQL_DELETE_TIMESLOT = "delete from time_slots where timeslot_id = ?";
+    private static final String SQL_UPDATE_TIMESLOT = "update time_slots set start_lesson = ?, end_lesson = ? where timeslot_id = ?";
+    private static final String SQL_GET_ALL_TIMESLOT = "select * from lessons";
+    private static final String SQL_INSERT_TIMESLOT = "insert into time_slots(start_lesson, end_lesson) values(?,?)";
 
 
     @Override

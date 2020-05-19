@@ -12,7 +12,7 @@ public class FacultyMapper implements RowMapper<Faculty> {
         Faculty faculty = new Faculty();
 
         faculty.setFacultyId(resultSet.getLong("faculty_id"));
-        faculty.setName(resultSet.getString("name"));
+        faculty.setName(resultSet.getString("faculty_name"));
 
         return faculty;
     }

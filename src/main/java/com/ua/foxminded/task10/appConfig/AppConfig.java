@@ -1,8 +1,6 @@
 package com.ua.foxminded.task10.appConfig;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,15 +11,13 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 import java.util.Objects;
 
-
 @Configuration
 @ComponentScan("com.ua.foxminded.task10")
 @PropertySource("classpath:database.properties")
 public class AppConfig {
 
     @Autowired
-    @Qualifier("environment")
-   private Environment environment;
+    private Environment environment;
 
     private static final String URL = "url";
     private static final String USER = "dbuser";

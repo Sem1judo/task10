@@ -1,6 +1,5 @@
 package com.ua.foxminded.task10.model.mapper;
 
-import com.ua.foxminded.task10.model.Faculty;
 import com.ua.foxminded.task10.model.Group;
 import org.springframework.jdbc.core.RowMapper;
 

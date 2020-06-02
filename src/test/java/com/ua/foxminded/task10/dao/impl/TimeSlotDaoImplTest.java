@@ -35,9 +35,8 @@ class TimeSlotDaoImplTest {
 
     @Test
     public void shouldCreateTimeSlot() {
-        when(jdbcTemplate.update(eq("insert into time_slots(start_lesson, end_lesson) values(?,?)"),
-                any(LocalDateTime.class),
-                any(LocalDateTime.class)))
+        when(jdbcTemplate.update(eq("insert into time_slots(start_lesson, end_lesson) values(?,?)")
+                , eq(LocalDateTime.parse("2020-01-01T12:00:00")), eq(LocalDateTime.parse("2020-01-01T14:00:00"))))
                 .thenReturn(1);
 
         TimeSlot timeSlot = new TimeSlot();
@@ -70,7 +69,7 @@ class TimeSlotDaoImplTest {
     @Test
     public void shouldDeleteTimeSLot() {
         when(jdbcTemplate.update(eq("delete from time_slots where timeslot_id = ?"),
-                anyLong())).
+                eq(1L))).
                 thenReturn(1);
 
         boolean isDeleted = timeSlotDao.delete(1L);
@@ -79,10 +78,8 @@ class TimeSlotDaoImplTest {
     }
 
     @Test
-    public void shouldRerutnAppropriateName() {
-        when(jdbcTemplate.queryForObject(eq("select * from time_slots where timeslot_id = ?")
-                , eq(new Object[]{100L})
-                , (TimeSLotMapper) any()))
+    public void shouldReturnAppropriateName() {
+        when(jdbcTemplate.queryForObject(eq("select * from time_slots where timeslot_id = ?"), eq(new Object[]{100L}), (TimeSLotMapper) any()))
                 .thenReturn(getMeTestTimeSlot());
 
         TimeSlot timeSlot = timeSlotDao.getById(100L);

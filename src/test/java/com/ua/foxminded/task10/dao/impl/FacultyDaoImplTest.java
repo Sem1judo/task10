@@ -32,7 +32,7 @@ class FacultyDaoImplTest {
     @Test
     public void shouldCreateFaculty() {
         when(jdbcTemplate.update(eq("insert into faculties(faculty_name) values(?)"),
-                anyString()))
+                eq("testName")))
                 .thenReturn(1);
 
         Faculty faculty = new Faculty();
@@ -44,9 +44,7 @@ class FacultyDaoImplTest {
 
     @Test
     public void shouldUpdatedFaculty() {
-        when(jdbcTemplate.update(eq("update faculties set faculty_name = ? where faculty_id = ?"),
-                anyString(),
-                anyLong()))
+        when(jdbcTemplate.update(eq("update faculties set faculty_name = ? where faculty_id = ?"), anyString(), anyLong()))
                 .thenReturn(1);
 
         Faculty faculty = new Faculty();
@@ -59,8 +57,7 @@ class FacultyDaoImplTest {
 
     @Test
     public void shouldDeleteFaculty() {
-        when(jdbcTemplate.update(eq("delete from faculties where faculty_id = ?"),
-                anyLong())).
+        when(jdbcTemplate.update(eq("delete from faculties where faculty_id = ?"), eq(1L))).
                 thenReturn(1);
 
         boolean isDeleted = facultyDao.delete(1L);
@@ -69,9 +66,8 @@ class FacultyDaoImplTest {
     }
 
     @Test
-    public void shouldRerutnAppropriateName() {
-        when(jdbcTemplate.queryForObject(eq("select * from faculties where faculty_id = ?")
-                , eq(new Object[]{100L})
+    public void shouldReturnAppropriateName() {
+        when(jdbcTemplate.queryForObject(eq("select * from faculties where faculty_id = ?"), eq(new Object[]{100L})
                 , (FacultyMapper) any())).thenReturn(getMeTestFaculty());
 
         Faculty faculty = facultyDao.getById(100L);

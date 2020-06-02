@@ -29,8 +29,7 @@ class GroupDaoImplTest {
 
     @Test
     public void shouldCreateGroup() {
-        when(jdbcTemplate.update(eq("insert into groups(group_name) values(?)"),
-                anyString()))
+        when(jdbcTemplate.update(eq("insert into groups(group_name) values(?)"),eq("testName")))
                 .thenReturn(1);
 
         Group group = new Group();
@@ -42,9 +41,7 @@ class GroupDaoImplTest {
 
     @Test
     public void shouldUpdatedGroup() {
-        when(jdbcTemplate.update(eq("update groups set group_name where group_id = ?"),
-                anyString(),
-                anyLong()))
+        when(jdbcTemplate.update(eq("update groups set group_name where group_id = ?"), anyString(), anyLong()))
                 .thenReturn(1);
 
         Group group = new Group();
@@ -57,9 +54,7 @@ class GroupDaoImplTest {
 
     @Test
     public void shouldDeleteGroup() {
-        when(jdbcTemplate.update(eq("delete from groups where group_id = ?"),
-                anyLong())).
-                thenReturn(1);
+        when(jdbcTemplate.update(eq("delete from groups where group_id = ?"), eq(1L))).thenReturn(1);
 
         boolean isDeleted = groupDao.delete(1L);
 
@@ -67,10 +62,9 @@ class GroupDaoImplTest {
     }
 
     @Test
-    public void shouldRerutnAppropriateName() {
-        when(jdbcTemplate.queryForObject(eq("select * from groups where group_id = ?")
-                , eq(new Object[]{100L})
-                , (GroupMapper) any())).thenReturn(getMeTestGroup());
+    public void shouldReturnAppropriateName() {
+        when(jdbcTemplate.queryForObject(eq("select * from groups where group_id = ?"),eq(new Object[]{100L})
+                ,(GroupMapper) any())).thenReturn(getMeTestGroup());
 
         Group group = groupDao.getById(100L);
 

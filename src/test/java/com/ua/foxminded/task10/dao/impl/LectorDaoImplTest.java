@@ -35,9 +35,7 @@ class LectorDaoImplTest {
 
     @Test
     public void shouldCreateLector() {
-        when(jdbcTemplate.update(eq("insert into lectors(first_name, last_name) values(?,?)"),
-                anyString(),
-                anyString()))
+        when(jdbcTemplate.update(eq("insert into lectors(first_name, last_name) values(?,?)"), eq("testName"), eq("testSurname")))
                 .thenReturn(1);
 
         Lector lector = new Lector();
@@ -70,7 +68,7 @@ class LectorDaoImplTest {
     @Test
     public void shouldDeleteLector() {
         when(jdbcTemplate.update(eq("delete from lectors where lector_id = ?"),
-                anyLong())).
+                eq(1L))).
                 thenReturn(1);
 
         boolean isDeleted = lectorDao.delete(1L);
@@ -79,10 +77,10 @@ class LectorDaoImplTest {
     }
 
     @Test
-    public void shouldRerutnAppropriateFirstNameAndLastName() {
+    public void shouldReturnAppropriateFirstNameAndLastName() {
         when(jdbcTemplate.queryForObject(eq("select * from lectors where lector_id = ?")
                 , eq(new Object[]{100L})
-                ,(LectorMapper)any())).thenReturn(getMeTestLector());
+                , (LectorMapper) any())).thenReturn(getMeTestLector());
 
         Lector lector = lectorDao.getById(100L);
         System.out.println(lector);

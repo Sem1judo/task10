@@ -31,8 +31,7 @@ class LessonDaoImplTest {
 
     @Test
     public void shouldCreateLesson() {
-        when(jdbcTemplate.update(eq("insert into lessons(lesson_name) values(?)"),
-                anyString()))
+        when(jdbcTemplate.update(eq("insert into lessons(lesson_name) values(?)"), eq("testName")))
                 .thenReturn(1);
 
         Lesson lesson = new Lesson();
@@ -59,8 +58,7 @@ class LessonDaoImplTest {
 
     @Test
     public void shouldDeleteLesson() {
-        when(jdbcTemplate.update(anyString(),
-                anyLong())).
+        when(jdbcTemplate.update(anyString(), eq(1L))).
                 thenReturn(1);
 
         boolean isDeleted = lessonDao.delete(1L);
@@ -69,10 +67,8 @@ class LessonDaoImplTest {
     }
 
     @Test
-    public void shouldRerutnAppropriateName() {
-        when(jdbcTemplate.queryForObject(eq("select * from lessons where lesson_id = ?")
-                , eq(new Object[]{100L})
-                , (LessonMapper) any()))
+    public void shouldReturnAppropriateName() {
+        when(jdbcTemplate.queryForObject(eq("select * from lessons where lesson_id = ?"),eq(new Object[]{100L}),(LessonMapper) any()))
                 .thenReturn(getMeTestLesson());
 
         Lesson lesson = lessonDao.getById(100L);

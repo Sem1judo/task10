@@ -51,9 +51,9 @@ class TimeSlotDaoImplTest {
     @Test
     public void shouldUpdatedTimeSlot() {
         when(jdbcTemplate.update(eq("update time_slots set start_lesson = ?, end_lesson = ? where timeslot_id = ?"),
-                any(LocalDateTime.class),
-                any(LocalDateTime.class),
-                anyLong()))
+                eq(LocalDateTime.of(2020, 12, 14, 10, 30)),
+                eq(LocalDateTime.of(2020, 12, 14, 12, 30)),
+                eq(1L)))
                 .thenReturn(1);
 
         TimeSlot timeSlot = new TimeSlot();

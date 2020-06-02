@@ -44,7 +44,7 @@ class FacultyDaoImplTest {
 
     @Test
     public void shouldUpdatedFaculty() {
-        when(jdbcTemplate.update(eq("update faculties set faculty_name = ? where faculty_id = ?"), anyString(), anyLong()))
+        when(jdbcTemplate.update(eq("update faculties set faculty_name = ? where faculty_id = ?"), eq("testName"), eq(1L)))
                 .thenReturn(1);
 
         Faculty faculty = new Faculty();

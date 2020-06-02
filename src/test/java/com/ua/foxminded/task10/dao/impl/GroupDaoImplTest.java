@@ -41,7 +41,7 @@ class GroupDaoImplTest {
 
     @Test
     public void shouldUpdatedGroup() {
-        when(jdbcTemplate.update(eq("update groups set group_name where group_id = ?"), anyString(), anyLong()))
+        when(jdbcTemplate.update(eq("update groups set group_name where group_id = ?"), eq("testName"), eq(1L)))
                 .thenReturn(1);
 
         Group group = new Group();

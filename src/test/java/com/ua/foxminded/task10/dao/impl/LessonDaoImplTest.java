@@ -44,8 +44,7 @@ class LessonDaoImplTest {
     @Test
     public void shouldUpdatedLesson() {
         when(jdbcTemplate.update(eq("update lessons set lesson_name = ? where lesson_id = ?"),
-                anyString(),
-                anyLong()))
+                eq("testName"), eq(1L)))
                 .thenReturn(1);
 
         Lesson lesson = new Lesson();

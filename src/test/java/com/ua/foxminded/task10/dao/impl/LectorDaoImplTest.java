@@ -50,9 +50,8 @@ class LectorDaoImplTest {
     public void shouldUpdatedLector() {
 
         when(jdbcTemplate.update(eq("update lectors set first_name = ?, last_name = ? where lector_id = ?"),
-                anyString(),
-                anyString(),
-                anyLong()))
+                eq("testName"),
+                eq("testSurname"), eq(1L)))
                 .thenReturn(1);
 
         Lector lector = new Lector();
